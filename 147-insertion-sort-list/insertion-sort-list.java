@@ -1,5 +1,9 @@
 class Solution {
     public ListNode insertionSortList(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+
         ListNode temp = head;
         List<Integer> list=new ArrayList<>();
         while(temp != null) {
