@@ -3,16 +3,19 @@ import java.util.regex.Pattern;
 class Solution {
     public String mostCommonWord(String para, String[] ban) {
         para = para.replaceAll("[!?',;.]", " ");
-        for(String str : ban) {
-            para = para.replaceAll("(?i)\\b" + Pattern.quote(str) + "\\b", " ");
-        }
 
         String[] s = para.toLowerCase().trim().split("\\s+");
         System.out.print(Arrays.toString(s));
 
+        StringBuilder sb=new StringBuilder();
+        for(String str : ban) {
+            sb.append(str);
+            sb.append(" ");
+        }
+
         HashSet<String> set=new HashSet<>();
         for(String str : s) {
-            set.add(str);
+            if(sb.indexOf(str) == -1) set.add(str);
         }
 
         System.out.print(set);
