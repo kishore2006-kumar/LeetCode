@@ -9,13 +9,13 @@ class Solution {
 
         while(!queue.isEmpty()) {
             int size = queue.size();
-            List<Integer> temp = new ArrayList<>();
+            List<Integer> temp = new LinkedList<>();
 
             for(int i=0; i<size; i++) {
                 TreeNode curr = queue.poll();
                 
-                if(left2Right) temp.add(curr.val);
-                else temp.add(0, curr.val);
+                if(left2Right) temp.addLast(curr.val);
+                else temp.addFirst(curr.val);
 
                 if(curr.left != null) queue.offer(curr.left);
                 if(curr.right != null) queue.offer(curr.right);
