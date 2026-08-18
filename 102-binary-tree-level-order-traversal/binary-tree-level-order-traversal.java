@@ -13,13 +13,11 @@ class Solution {
             for(int i=0; i<size; i++) {
                 TreeNode node = queue.poll();
                 temp.add(node.val);
-                System.out.print(node.val+" ");
 
                 if(node.left != null) queue.offer(node.left);
                 if(node.right != null) queue.offer(node.right);
             }
             list.add(temp);
-            System.out.println();
         }
         return list;
     }
