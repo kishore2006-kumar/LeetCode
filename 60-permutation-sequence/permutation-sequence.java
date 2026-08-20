@@ -1,12 +1,16 @@
 class Solution {
+    
+    int count = 0;
+    String ans = "";
 
-    void backtrack(int k, char[] a, List<List<Character>> list, List<Character> temp, boolean[] used) {
+    void backtrack(int k, char[] a, StringBuilder temp, boolean[] used) {
         int n = a.length;
 
-        if(list.size() == k) return;
-
-        if(temp.size() == n) {
-            list.add(new ArrayList<>(temp));
+        if (temp.length() == n) {
+            count++;
+            if (count == k) {
+                ans = temp.toString();
+            }
             return;
         }
 
@@ -14,33 +18,25 @@ class Solution {
             if(used[i]) continue;
 
             used[i] = true;
-            temp.add(a[i]);
-            backtrack(k, a, list, temp, used);
+            temp.append(a[i]);
+
+            backtrack(k, a, temp, used);
+            if(count == k) return;
 
             used[i] = false;
-            temp.remove(temp.size()-1);
+            temp.deleteCharAt(temp.length()-1);
         }
     }
-
-    // static List<List<Integer>> permute(char[] ch, int num, int k, List<List<Integer>> list) {
-        
-    // }
 
     public String getPermutation(int n, int k) {
         char[] ch=new char[n];
         for(int i=1; i<=n; i++) {
-            ch[i-1] += i + '0';
+            ch[i-1] += (char)(i + '0');
         }
 
-        List<List<Character>> list=new ArrayList<>();
         boolean[] used=new boolean[n];
-        backtrack(k, ch, list, new ArrayList<>(), used);
+        backtrack(k, ch, new StringBuilder(), used);
 
-        int ind = 0;
-        for(char c : list.get(list.size() - 1)) {
-            ch[ind++] = c;
-        }
-
-        return new String(ch);
+        return ans;
     }
 }
