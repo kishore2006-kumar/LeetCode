@@ -1,7 +1,10 @@
 class Solution {
 
-    void backtrack(char[] a, List<List<Character>> list, List<Character> temp, boolean[] used) {
+    void backtrack(int k, char[] a, List<List<Character>> list, List<Character> temp, boolean[] used) {
         int n = a.length;
+
+        if(list.size() == k) return;
+
         if(temp.size() == n) {
             list.add(new ArrayList<>(temp));
             return;
@@ -12,7 +15,7 @@ class Solution {
 
             used[i] = true;
             temp.add(a[i]);
-            backtrack(a, list, temp, used);
+            backtrack(k, a, list, temp, used);
 
             used[i] = false;
             temp.remove(temp.size()-1);
@@ -31,10 +34,10 @@ class Solution {
 
         List<List<Character>> list=new ArrayList<>();
         boolean[] used=new boolean[n];
-        backtrack(ch, list, new ArrayList<>(), used);
+        backtrack(k, ch, list, new ArrayList<>(), used);
 
         int ind = 0;
-        for(char c : list.get(k-1)) {
+        for(char c : list.get(list.size() - 1)) {
             ch[ind++] = c;
         }
 
