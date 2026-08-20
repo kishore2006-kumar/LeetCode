@@ -20,7 +20,6 @@ class Solution {
                 arr2[b] = nums[i];
             }
         }
-        System.out.print(Arrays.toString(arr1) + " " + Arrays.toString(arr1));
         for(int i=0; i<=b; i++) {
             a++;
             arr1[a] = arr2[i];
