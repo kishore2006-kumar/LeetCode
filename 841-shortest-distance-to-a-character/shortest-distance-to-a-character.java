@@ -5,7 +5,6 @@ class Solution {
         for(int i=0; i<s.length(); i++) {
             if(s.charAt(i) == c) list.add(i);
         }
-        Collections.sort(list);
         for(int i=0; i<s.length(); i++) {
             char ch = s.charAt(i);
             if(ch != c) {
